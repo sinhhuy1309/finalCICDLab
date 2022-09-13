@@ -1,0 +1,24 @@
+---
+- hosts: dockerhost
+
+  tasks:
+    - name: import variables
+      include_vars: var.yml
+
+    - name: Login Dockerhub
+      command: docker login -u {{DockerUserName}} -p {{DockerPass}}
+
+    - name: Stop existing Container
+      command: docker stop regapp-server
+      ignore_errors: yes
+
+    - name: Remove the Container
+      command: docker rm regapp-server
+      ignore_errors: yes
+
+    - name: Remove image
+      command: docker rmi sinhhuy1309/regapp:latest
+      ignore_errors: yes
+
+    - name: Create Container
+      command: docker run -d --name regapp-server -p 8082:8080 sinhhuy1309/regapp:latest

@@ -1,0 +1,21 @@
+---
+- hosts: ansible
+  
+  tasks:
+    - name: import variables
+      include_vars: var.yml
+
+    - name: Login Dockerhub
+      command: docker login -u {{DockerUserName}} -p {{DockerPass}}
+      
+    - name: Create Docker Image
+      command: docker build -t regapp:latest .
+      args: 
+        chdir: /opt/docker
+    
+    - name: Create tag to push image onto Dockerhub
+      command: docker tag regapp:latest sinhhuy1309/regapp:latest
+
+    - name: push Docker image
+      command: docker push sinhhuy1309/regapp:latest
+    
