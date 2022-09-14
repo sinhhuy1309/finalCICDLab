@@ -2,12 +2,6 @@
 - hosts: ansible
   
   tasks:
-    - name: import variables
-      include_vars: var.yml
-
-    - name: Login Dockerhub
-      command: docker login -u {{DockerUserName}} -p {{DockerPass}}
-      
     - name: Create Docker Image
       command: docker build -t regapp:latest .
       args: 
@@ -18,4 +12,3 @@
 
     - name: push Docker image
       command: docker push sinhhuy1309/regapp:latest
-    
