@@ -7,7 +7,7 @@ pipeline {
     stages{
         stage('Fetch Code'){
             steps{
-                git branch: 'main', url: 'https://github.com/sinhhuy1309/finalCICDLab.git'
+                git branch: 'dev', url: 'https://github.com/sinhhuy1309/finalCICDLab.git'
             }
         }
 
