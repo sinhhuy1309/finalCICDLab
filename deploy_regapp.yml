@@ -1,5 +1,5 @@
 ---
-- hosts: dockerhost
+- hosts: webhostdev
 
   tasks:
     - name: import variables
